@@ -1,10 +1,12 @@
 
 console.log("Seting up tests..");
 var steem = require('steem');
+
+
 require('dotenv').config();
 
-//steem.api.setOptions({url: 'https://testnet.steemitdev.com', useAppbaseApi :  true, address_prefix : 'TST', 'chain_id' : "abc93c9021bbd9a8dd21c438ee3c480a661ca1966b5e4e838326dcf42a3dac2d"});
-steem.api.setOptions({url: 'http://138.201.188.83:8751', useAppbaseApi :  true, address_prefix : 'TST', 'chain_id' : "abc93c9021bbd9a8dd21c438ee3c480a661ca1966b5e4e838326dcf42a3dac2d"});
+steem.api.setOptions({url: 'https://testnet.steemitdev.com', useAppbaseApi :  true, address_prefix : 'TST', 'chain_id' : "abc93c9021bbd9a8dd21c438ee3c480a661ca1966b5e4e838326dcf42a3dac2d"});
+//steem.api.setOptions({url: 'http://138.201.188.83:8751', useAppbaseApi :  true, address_prefix : 'TST', 'chain_id' : "abc93c9021bbd9a8dd21c438ee3c480a661ca1966b5e4e838326dcf42a3dac2d"});
 steem.config.set('address_prefix', 'TST')
 steem.config.set('chain_id', 'abc93c9021bbd9a8dd21c438ee3c480a661ca1966b5e4e838326dcf42a3dac2d');
 
