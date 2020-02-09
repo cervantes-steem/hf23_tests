@@ -39,6 +39,9 @@ function broadcast(tx, wif)
 
 /*
 
+
+
+
 [
   "transfer",
   {
