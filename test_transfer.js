@@ -28,7 +28,7 @@ transf.to = "domenico";
 transf.amount = transfer;
 transf.memo = comments;
 
-const key = dsteem.PrivateKey.from(s_active_key_0)
+const key = dsteem.PrivateKey.f
 
 client.broadcast.transfer(transf, key).then(
     function(result) {

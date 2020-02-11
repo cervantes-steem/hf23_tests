@@ -1,0 +1,1 @@
+curl -s --data '{"jsonrpc":"2.0", "method":"database_api.get_dynamic_global_properties", "id":1}' https://testnet.steemitdev.com/

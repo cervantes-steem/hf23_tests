@@ -50,6 +50,78 @@ function broadcast(tx, wif)
     });
 }
 
+
+async function test_transfer_tests() {
+
+steem.broadcast.transfer(s_active_key_0, s_username_0, s_username_1, "1000.000 TESTS", "test", function(err, result) {
+    console.log(err, result);
+});
+
+
+}
+
+async function test_transfer_test_back() {
+
+  steem.broadcast.transfer(s_active_key_1, s_username_1, s_username_0, "1000.000 TESTS", "test", function(err, result) {
+    console.log(err, result);
+  });
+
+}
+
+
+
+/*
+
+[
+  "transfer",
+  {
+    "from": "steemit",
+    "to": "alice",
+    "amount": {
+      "amount": "10",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "memo": "What"
+  }
+]
+
+*/
+
+async function test_transfer_op() {
+
+  let tx = {
+
+    'operations': [
+      
+      [
+        "transfer",
+        {
+          "from": "cervantes",
+          "to": "domenico",
+          "amount": {
+            "amount": "10.000",
+            "precision": 6,
+            "nai": "@@000000013"
+          },
+          "memo": "Test Transfer."
+        }
+      ]
+
+    ] 
+
+  };
+
+  let j = JSON.stringify(tx);
+  console.log(j);
+
+  let result = await broadcast(tx, s_active_key_0);
+  console.log(result);
+
+
+}
+
+
 /*
 
 {
@@ -84,15 +156,11 @@ async function test_comment() {
 
   };
 
-  //let nai_pool = await steem.api.callAsync('database_api.get_nai_pool', {});
-
-  //let pool = nai_pool.nai_pool;
   let j = JSON.stringify(tx);
   console.log(j);
 
   let result = await broadcast(tx, s_posting_key_0);
   console.log(result);
-
 
 }
 
@@ -154,8 +222,45 @@ async function successful_smt_object_create(precision) {
   // assert(result.noError);
 }
 
-let new_smt_nai = '@@979651727';
+
+async function bulk_smt_object_create() {
+
+  username = "cervantes"
+  let nai_pool = await steem.api.callAsync('database_api.get_nai_pool', {});
+
+  let pool = nai_pool.nai_pool;
+
+  let operations = [];
+  let smts = []
+
+  for (let i = 0; i < pool.length; i++) {
+
+      // Random precision
+      const precision = Math.floor(Math.random() * 12);
+      smts.push({nai: pool[i].nai, precision: precision});
+      operations.push([
+          'smt_create', {
+              'control_account': s_username_0,
+              'symbol': {'nai': pool[i].nai, 'precision': precision},
+              'smt_creation_fee': {'amount': '1000', 'precision': 3, 'nai': '@@000000013'},
+              'precision': precision,
+          }]
+      )
+  }
+
+  let tx = {
+      'operations': operations
+  };
+
+  await broadcast(tx, s_active_key_0);
+
+}
+
+//let new_smt_nai = '@@979651727';
 
 //successful_smt_object_create(3);
 //test_smt_set_setup_parameters();
-test_comment()
+//test_transfer_tests();
+//test_transfer_test_back();
+//test_comment();
+bulk_smt_object_create();
