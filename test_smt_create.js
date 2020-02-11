@@ -363,6 +363,7 @@ async function create_smt_full_setup() {
                       ['$market_maker', 1],
                       ['$rewards', 1],
                       ['$vesting', 1],
+                      ['cervantes', 1],
                   ],
               },
               'interval_seconds': 21600,

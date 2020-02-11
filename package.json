@@ -1,8 +1,8 @@
 {
-  "name": "js",
+  "name": "Testing steem HF23",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "execute_tests.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
