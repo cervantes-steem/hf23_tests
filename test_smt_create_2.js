@@ -172,28 +172,13 @@ async function test_comment_2() {
           "author": "domenico",
           "permlink": "test1",
           "max_accepted_payout": {
-            "amount": 10000,
+            "amount": '10000',
             "precision": 3,
             "nai": "@@000000013"
           },
           "percent_steem_dollars": 5000,
           "allow_votes": true,
           "allow_curation_rewards": true,
-          "extensions": [
-            0,
-            {
-              "votable_assets": [
-                  [
-                    TEST_NAI_ASSET,
-                      {
-                          "max_accepted_payout": 10,
-                          "allow_curation_rewards": true,
-                          "beneficiaries": {}
-                      }
-                  ]
-              ]
-            }
-          ]
         }
       ]
 
