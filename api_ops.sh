@@ -1,1 +1,2 @@
 curl -s --data '{"jsonrpc":"2.0", "method":"database_api.list_smt_tokens", "params":{"start":"","limit":10,"order":"by_control_account"}, "id":1}' https://testnet.steemitdev.com/
+#curl -s --data '{"jsonrpc":"2.0", "method":"condenser_api.get_content", "params":["domenico", "test1"], "id":1}' https://testnet.steemitdev.com/

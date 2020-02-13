@@ -16,6 +16,7 @@ console.log(s_username_0);
 
 var s_username_1 = process.env.STEEM_USERNAME_1;
 var s_active_key_1 = process.env.STEEM_AK_1;
+var s_posting_key_1 = process.env.STEEM_PK_1;
 
 var s_username_2 = process.env.STEEM_USERNAME_2;
 var s_active_key_2 = process.env.STEEM_AK_2;
@@ -134,22 +135,90 @@ async function test_transfer_op() {
   "permlink": "a-post-by-joe",
   "json_metadata": "{\"tags\":[\"steemit\",\"example\#",\"tags\"]}"
 }
+
+
+.extensions.push([
+                        1,
+                        {
+                            votable_assets: [
+                                [
+                                    TEST_NAI_ASSET,
+                                    {
+                                        max_accepted_payout: 10,
+                                        allow_curation_rewards: true,
+                                        beneficiaries: {},
+                                    },
+                                ],
+                            ],
+                        },
+                    ]);
+
 */
 
-async function test_comment() {
+async function test_comment_2() {
 
+
+  const TEST_NAI_ASSET = { nai: '@@103004864', precision: 3 }
 
   let tx = {
 
-    'operations': [[
-        'comment', {
-          "author": "cervantes",
-          "title": "A post by Joe",
-          "body": "Look at my awesome post",
-          "parent_author": "",
-          "parent_permlink": "steem",
-          "permlink": "a-post-by-joe",
-          "json_metadata": "{\"tags\":[\"steemit\",\"example\",\"tags\"]}"
+    'operations': [
+
+      [
+        "comment_options",
+        {
+          "author": "domenico",
+          "permlink": "test1",
+          "max_accepted_payout": {
+            "amount": "1000000",
+            "precision": 3,
+            "nai": "@@000000013"
+          },
+          "percent_steem_dollars": 5000,
+          "allow_votes": true,
+          "allow_curation_rewards": true,
+          "extensions": []
+        }
+      ]
+
+    ] 
+
+  };
+  
+  /*
+
+  let tx = {
+
+    'operations': [
+
+      [
+        "comment_options",
+        {
+          "author": "domenico",
+          "permlink": "test1",
+          "max_accepted_payout": {
+            "amount": "1000000",
+            "precision": 3,
+            "nai": "@@000000013"
+          },
+          "percent_steem_dollars": 5000,
+          "allow_votes": true,
+          "allow_curation_rewards": true,
+          "extensions": [
+            0,
+            {
+              "votable_assets": [
+                  [
+                    TEST_NAI_ASSET,
+                      {
+                          "max_accepted_payout": 10,
+                          "allow_curation_rewards": true,
+                          "beneficiaries": {}
+                      }
+                  ]
+              ]
+            }
+          ]
         }
       ]
 
@@ -157,10 +226,44 @@ async function test_comment() {
 
   };
 
+  */
+
   let j = JSON.stringify(tx);
   console.log(j);
 
-  let result = await broadcast(tx, s_posting_key_0);
+  let result = await broadcast(tx, s_posting_key_1);
+  console.log(result);
+
+}
+
+async function test_comment() {
+
+
+  TEST_NAI_ASSET = "@@123456789"
+
+  let tx = {
+
+    'operations': [
+
+      [
+        'comment', {
+          "author": "domenico",
+          "title": "A post by Joe",
+          "body": "Look at my awesome post",
+          "parent_author": "",
+          "parent_permlink": "steem",
+          "permlink": "test1",
+          "json_metadata": "{\"tags\":[\"steemit\",\"example\",\"tags\"]}"
+        }
+      ],
+    
+    ]
+  };
+
+  let j = JSON.stringify(tx);
+  console.log(j);
+
+  let result = await broadcast(tx, s_posting_key_1);
   console.log(result);
 
 }
@@ -419,5 +522,9 @@ async function create_smt_full_setup() {
 //test_transfer_tests();
 //test_transfer_test_back();
 //test_comment();
+test_comment_2();
 //bulk_smt_object_create();
-create_smt_full_setup();
+//create_smt_full_setup();
+
+
+
