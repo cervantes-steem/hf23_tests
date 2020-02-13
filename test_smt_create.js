@@ -187,8 +187,7 @@ async function test_comment_2() {
                     TEST_NAI_ASSET,
                       {
                           "max_accepted_payout": 10,
-                          "allow_curation_rewards": true,
-                          "beneficiaries": {}
+                          "allow_curation_rewards": true
                       }
                   ]
               ]

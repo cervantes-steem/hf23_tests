@@ -36,7 +36,6 @@ function broadcast(tx, wif)
 }
 
 
-
 async function test_comment_options() {
 
 
@@ -60,7 +59,7 @@ async function test_comment_options() {
           "extensions": [
             0,
             {
-              "votable_assets": [
+              "votable_assets_options": [
                   [
                     TEST_NAI_ASSET,
                       {
@@ -120,7 +119,7 @@ async function test_comment() {
 
 console.log("Testing comment operation with account: " + s_username_1 + " ...");
 
-test_comment();
+//test_comment();
 test_comment_options();
 
 
