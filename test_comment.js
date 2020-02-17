@@ -57,26 +57,21 @@ async function test_comment_options() {
           "allow_votes": true,
           "allow_curation_rewards": true,
           "extensions": [
-            0,
-            {
-              "votable_assets_options": [
-                  [
-                    TEST_NAI_ASSET,
-                      {
-                          "max_accepted_payout": 10,
-                          "allow_curation_rewards": true,
-                          "beneficiaries": {}
-                      }
-                  ]
-              ]
-            }
+            [
+              0,
+              {
+                "beneficiaries": [{"account": "charlie", "weight": 1000}]
+              }
+            ]
           ]
+         
         }
-      ]
+    ]
+  ] 
+};
 
-    ] 
+        
 
-  };
 
 
   let j = JSON.stringify(tx);
